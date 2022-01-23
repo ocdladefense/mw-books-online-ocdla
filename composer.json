@@ -1,0 +1,15 @@
+{
+    "name": "ocdladefense/mw-books-online-ocdla",
+    "type": "wordpress-theme",
+    "authors": [
+        {
+            "name": "Jose Bernal",
+            "email": "jbernal.web.dev@gmail.com"
+        }
+    ],
+    "config": {
+        "preferred-install": {
+            "ocdladefense/*": "source"
+        }
+    }
+}
