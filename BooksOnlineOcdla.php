@@ -15,7 +15,7 @@ $wgExtensionCredits['specialpage'][] = array(
 	// 'url'            		=> 'http://www.mediawiki.org/wiki/Extension:WikilogOcdla',
 );
 
-// $wgExtensionMessagesFiles['WikilogOcdla'] = $dir . 'WikilogOcdla.i18n.php';
+
 
 $dir = dirname( __FILE__ );
 
@@ -37,9 +37,36 @@ class BooksOnlineOcdla {
 	public static function renderTagBonUpdate( $input, array $args, Parser $parser, PPFrame $frame ) {
 		// Nothing exciting here, just escape the user-provided input and throw it back out again (as example)
 		// return htmlspecialchars( $input );
+		$month = $args['month'];
 		$year = $args['year'];
+		$deprecated = $args['deprecated'];
+
 		$output = $parser->recursiveTagParse( $input, $frame );
-		return "<div class='bon-update bon-update-{$year}'><span class='bon-update-title'>{$year} Update</span>".$output."</div>";
+
+		$title_parts = array($month, $year, "update");
+		$title_parts = array_filter($title_parts, function($part){ return !empty($part); });
+		$title_parts = array_map(function($part){ return ucwords($part); }, $title_parts);
+		
+
+		$classes = array("bon-update");
+
+		if(!empty($year)) {
+			$classes []= sprintf("bon-update-%s", $year);
+		}
+
+		if(!empty($deprecated) && $deprecated === "true") {
+			$classes []= "bon-update-deprecated";
+			$title_parts []= "(deprecated)";
+		}
+
+		if(!empty($month) && !empty($year)) {
+			$classes []= sprintf("bon-update-%s-%s", $year, $month);
+		}
+
+		$classes = implode(" ", $classes);
+		$title = implode(" ", $title_parts);
+
+		return "<div class='{$classes}'><span class='bon-update-title'>{$title}</span>".$output."</div>";
 	}
 
 
