@@ -28,7 +28,7 @@ class BooksOnlineOcdla {
 
 	public static function onParserSetup( Parser $parser ) {
 		// When the parser sees the <sample> tag, it executes renderTagSample (see below)
-		$parser->setHook( 'bonUpdate', 'BooksOnlineOcdla::renderTagBonUpdate' );
+		$parser->setHook( 'bon-update', 'BooksOnlineOcdla::renderTagBonUpdate' );
 		return true;
 	}
 
@@ -74,7 +74,7 @@ class BooksOnlineOcdla {
 		global $wgHooks, $wgResourceModules, $wgOcdlaShowBooksOnlineDrawer;
 
 		// $wgHooks['SpecialSearchCreateLink'][] = 'SetupBooksOnlineOcdla::onSpecialSearchCreateLink';
-		$wgHooks['BeforePageDisplay'][] = 'BooksOnlineOcdla::onBeforePageDisplay';
+		// $wgHooks['BeforePageDisplay'][] = 'BooksOnlineOcdla::onBeforePageDisplay';
 		$wgHooks['ParserFirstCallInit'][] = 'BooksOnlineOcdla::onParserSetup';
 
 
