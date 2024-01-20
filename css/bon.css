@@ -10,3 +10,7 @@
 	font-weight: bold;
 	font-size: 1.4em;
 }
+
+.bon-update-deprecated {
+	display: none;
+}
